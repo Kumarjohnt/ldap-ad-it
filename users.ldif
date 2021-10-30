@@ -63,36 +63,69 @@ m-must: objectCategory
 ############
 # Domain
 ############
-dn: dc=wimpi,dc=net
-dc: wimpi
+dn: dc=example,dc=com
+dc: example
 objectClass: top
 objectClass: domain
 
-dn: ou=users,dc=wimpi,dc=net
+dn: ou=users,dc=example,dc=com
 objectClass: organizationalUnit
 objectClass: top
 ou: users
 
-dn: uid=test,ou=users,dc=wimpi,dc=net
+dn: uid=admin,ou=users,dc=example,dc=com
 objectClass: top
 objectClass: person
 objectClass: inetOrgPerson
 objectClass: simulatedMicrosoftSecurityPrincipal
 objectCategory: User
-cn: Test User
-sn: test
-uid: test
-sAMAccountName: test
+cn: Admin User
+sn: admin
+uid: admin
+sAMAccountName: admin
 userPassword: secret
-memberOf: admin
+memberOf: admins
 
-dn: ou=roles,dc=wimpi,dc=net
+dn: uid=test1,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: simulatedMicrosoftSecurityPrincipal
+objectCategory: User
+cn: Test User 1
+sn: test1
+uid: test1
+sAMAccountName: test1
+userPassword: secret
+memberOf: users
+
+dn: uid=test2,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: simulatedMicrosoftSecurityPrincipal
+objectCategory: User
+cn: Test User 2
+sn: test2
+uid: test2
+sAMAccountName: test2
+userPassword: secret
+memberOf: users
+
+dn: ou=roles,dc=example,dc=com
 objectclass: top
 objectclass: organizationalUnit
 ou: roles
 
-dn: cn=admin,ou=roles,dc=wimpi,dc=net
+dn: cn=admins,ou=roles,dc=example,dc=com
 objectClass: top
 objectClass: groupOfNames
-cn: admin
-member: uid=test,ou=users,dc=wimpi,dc=net
+cn: admins
+member: uid=admin,ou=users,dc=example,dc=com
+
+dn: cn=users,ou=roles,dc=example,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: users
+member: uid=test1,ou=users,dc=example,dc=com
+member: uid=test2,ou=users,dc=example,dc=com
